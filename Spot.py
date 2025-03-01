@@ -4,12 +4,13 @@ import Background
 class Spot:
     def __init__(self):
         self.banner = "I"
-        self.back_color = media.red
         self.x_coor = 0
         self.z_coor = 0
         self.status = "known"
         self.plunder = "no"
         self.description = None
+        self.sprite_name = "./sprites/sprite_"
+        self.sprite = media.Picture(27,27)
     
     
     def make_point(self, raw_string):
@@ -23,40 +24,41 @@ class Spot:
             self.description = None
         else:
             self.description = cut_strings[5]
-        
-        
-    def import_color(self, given):
-        self.back_color = given
-
-
-    def tack(self, canvas):
-        if self.status == "known":
-            canvas.pict.addRect(self.back_color,canvas.calcx(self.x_coor,0),canvas.calcz(self.z_coor,0),17,17,False)
-        elif self.status == "discovered":
-            canvas.pict.addOval(self.back_color,canvas.calcx(self.x_coor,0),canvas.calcz(self.z_coor,0),17,17,False)
+        self.find_sprite()
+    
+    def find_sprite(self):
+        self.sprite_name = self.sprite_name + self.banner
+        if self.status == "mapped":
+            self.sprite_name = self.sprite_name + "_m_"
         elif self.status == "bannered":
-            canvas.pict.addOval(self.back_color,canvas.calcx(self.x_coor,0),canvas.calcz(self.z_coor,0),17,17,True)
-        elif self.status == "mapped":
-            canvas.pict.addRect(self.back_color,canvas.calcx(self.x_coor,0),canvas.calcz(self.z_coor,0),17,17,True)
+            self.sprite_name = self.sprite_name + "_b_"
+        elif self.status == "discovered":
+            self.sprite_name = self.sprite_name + "_d_"
+        elif self.status == "known":
+            self.sprite_name = self.sprite_name + "_k"
         else:
             if self.description == None:
                 print('Whoa, we got an error with the status of ' + self.banner)
             else:
                 print('Whoa, we got an error with the status of ' + self.banner + self.description)
             exit()
-            
-        if self.plunder == "yes" or self.plunder == "NA":
-            inverse = media.makeColor((255 - self.back_color.r),(255 - self.back_color.g),(255 - self.back_color.b))
-            if self.plunder == "yes":
-                canvas.pict.addOval(inverse,canvas.calcx(self.x_coor,2),canvas.calcz(self.z_coor,2),7,7,True)
+        if self.status != "known":
+            if self.plunder == "no":
+                self.sprite_name = self.sprite_name + "n"
+            elif self.plunder == "yes":
+                self.sprite_name = self.sprite_name + "y"
             elif self.plunder == "NA":
-                canvas.pict.addRect(inverse,canvas.calcx(self.x_coor,2),canvas.calcz(self.z_coor,2),7,7,True)
-        else:
-            if self.plunder != "no":
+                self.sprite_name = self.sprite_name + "x"
+            else:
                 if self.description == None:
-                    print('Whoa, we got an error with the plunder of ' + self.banner)
+                    print('Whoa, we got an error with the status of ' + self.banner)
                 else:
-                    print('Whoa, we got an error with the plunder of ' + self.banner + self.description)
+                    print('Whoa, we got an error with the status of ' + self.banner + self.description)
                 exit()
+        self.sprite_name = self.sprite_name + ".png"
+        self.sprite = media.makePicture(self.sprite_name)
+        
+    def tack(self, canvas):
+        canvas.pict.copyInto(self.sprite, canvas.calcx(self.x_coor, 0), canvas.calcz(self.z_coor, 0))
         if self.description != None:
-            canvas.pict.addText(media.black, canvas.calcx(self.x_coor,1), canvas.calcz(self.z_coor,1), self.description)
+            canvas.pict.addText(media.black, canvas.calcx(self.x_coor, 1), canvas.calcz(self.z_coor, 1), self.description)

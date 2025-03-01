@@ -83,10 +83,10 @@ NP.-1873.-2262.bannered.no.21
 US.-279.-1895.discovered.no.27U
 US.306.343.discovered.no.28U
 US.1293.429.discovered.no.29U
-PV.-1489.1596.discovered.no.13
-I.-1357.1812.discovered.no.3
+PV.-1537.1635.mapped.no.13
+I.-1357.1812.mapped.yes.3
 PO.-1890.2252.discovered.no.5
-PV.-1903.1669.discovered.no.14
+PV.-1909.1724.mapped.no.14
 NP.290.-1644.mapped.no.22
 US.599.127.mapped.no.30W
 US.1721.1447.discovered.no.31U
@@ -101,8 +101,8 @@ US.1989.-1756.discovered.no.36U
 US.1099.-1516.discovered.no.37U
 US.1008.-1232.mapped.no.38W
 US.1295.-863.discovered.no.39U
-US.1172.-935.discovered.no.40W
+US.1172.-935.mapped.yes.40W
 US.1311.-1183.discovered.no.41M
-NP.877.-392.discovered.no.25
-NP.381.1980.discovered.no.26
-NP.-2173.-954.discovered.no.27
+NP.877.-392.bannered.no.25
+NP.381.1985.bannered.yes.26
+NP.-2169.-958.bannered.yes.27

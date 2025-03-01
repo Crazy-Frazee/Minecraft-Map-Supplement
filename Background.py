@@ -35,20 +35,20 @@ class Background:
     
     def calcx(self, xin, code):
         if code == 0:
-            xout = (self.xaxis + (xin - 8))
+            xout = (self.xaxis + (xin - 13))
         if code == 1:
-            xout = (self.xaxis + (xin + 14))
+            xout = (self.xaxis + (xin + 13))
         if code == 2:
-            xout = (self.xaxis + (xin - 4))
+            xout = (self.xaxis + (xin - 8))
         return xout
     
     def calcz(self, zin, code):
         if code == 0:
-            zout = (self.zaxis + (zin - 8))
+            zout = (self.zaxis + (zin - 13))
         if code == 1:
             zout = (self.zaxis + (zin + 8))
         if code == 2:
-            zout = (self.zaxis + (zin - 4))
+            zout = (self.zaxis + (zin - 8))
         return zout
     
     def gridlines(self, zoom):
